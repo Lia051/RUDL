@@ -5,14 +5,14 @@
     "creators": ["Mulpan"],
     "verifier": "Mulpan",
     "verification": "https://youtu.be/atbqdfYbTb8?si=3A9WqPF6O0RTGucH",
-    "percentToQualify": 56,
+    "percentToQualify": 36,
     "password": "Not Copyable",
     "records": [
         {
-            "user": "Sample_Victor_1",
-            "link": "https://www.youtube.com/watch?v=DnuDa_tktnY",
-            "percent": 100,
-            "hz": 360
+            "user": "",
+            "link": "",
+            "percent": ,
+            "hz": 
         }
     ]
 }
