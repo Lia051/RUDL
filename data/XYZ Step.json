@@ -1,1 +1,14 @@
-
+{
+    "id": 110067,
+    "name": "XYZ Step",
+    "author": "Coke",
+    "creators": ["Coke"],
+    "verifier": "Coke",
+    "verification": "https://youtu.be/4ifenuMucTw?si=BWF4om56qDiOSCTS",
+    "percentToQualify": 20,
+    "password": "Not Copyable",
+    "records": [
+        {
+        }
+    ]
+}
