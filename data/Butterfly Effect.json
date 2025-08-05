@@ -9,6 +9,10 @@
     "password": "555208",
     "records": [
         {
+            "user": "Slimefrog",
+            "link": "https://www.youtube.com/watch?v=ZOca8nQmLoM",
+            "percent": 100,
+            "hz": 60
         }
     ]
 }
