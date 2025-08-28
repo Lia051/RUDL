@@ -1,6 +1,6 @@
  {
     "id": 224,
-    "name": "One",
+    "name": "1",
     "author": "smertnet",
     "creators": ["smertnet"],
     "verifier": "smertnet",
@@ -9,10 +9,6 @@
     "password": "Free Copy",
     "records": [
         {
-            "user": "",
-            "link": "",
-            "percent": ,
-            "hz": 
         }
     ]
 }
