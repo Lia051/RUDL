@@ -4,12 +4,12 @@
     --color-background-hover: #f0f0f0;
     --color-on-background-hover: #1c1b1f;
 
-    --color-primary: #d633ff;
+    --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #ff66ff 0%,   /* bright pink */
-        #a64dff 50%,  /* medium purple */
-        #6a0dad 100%  /* deep purple */
+        #cc33cc 0%,   /* darker pink */
+        #8a2be2 50%,  /* richer purple */
+        #4b0082 100%  /* deep indigo */
     );
 
     --color-primary-disabled: #c0a0c0;
@@ -27,12 +27,12 @@ header.dark {
     --color-background-hover: #27262c;
     --color-on-background-hover: white;
 
-    --color-primary: #d633ff;
+    --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #ff66ff 0%,   /* bright pink */
-        #a64dff 50%,  /* medium purple */
-        #6a0dad 100%  /* deep purple */
+        #cc33cc 0%,   /* darker pink */
+        #8a2be2 50%,  /* richer purple */
+        #4b0082 100%  /* deep indigo */
     );
 
     --color-primary-disabled: #1f213c;
