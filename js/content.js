@@ -1,76 +1,80 @@
 import { round, score } from './score.js';
 
 /**
- * Folders to load levels and editors from.
- * Must be relative to your public folder (browser-accessible paths)
+ * Main folder for lists and editors
  */
-const dirs = ['./data/easydemons', './data/mediumdemons'];
+const mainDir = '/data';
 
 /**
- * Fetch all levels from the listed directories
+ * Additional folders to try when fetching levels
+ */
+const levelDirs = ['/data/easydemons', '/data/mediumdemons'];
+
+/**
+ * Fetch all levels from the main directory, trying multiple folders for each level
  */
 export async function fetchList() {
     let combinedList = [];
 
-    for (const dir of dirs) {
-        try {
-            const listResult = await fetch(`${dir}/_list.json`);
-            if (!listResult.ok) throw new Error(`HTTP ${listResult.status}`);
-            const list = await listResult.json();
+    try {
+        const listResult = await fetch(`${mainDir}/_list.json`);
+        if (!listResult.ok) throw new Error(`HTTP ${listResult.status}`);
+        const list = await listResult.json();
 
-            const levels = await Promise.all(
-                list.map(async (path, rank) => {
+        const levels = await Promise.all(
+            list.map(async (path, rank) => {
+                let level = null;
+                let triedDirs = [];
+
+                // Try each directory until level is found
+                for (const dir of levelDirs) {
                     try {
                         const levelResult = await fetch(`${dir}/${path}.json`);
                         if (!levelResult.ok) throw new Error(`HTTP ${levelResult.status}`);
-                        const level = await levelResult.json();
-                        return [
-                            {
-                                ...level,
-                                path,
-                                records: level.records.sort((a, b) => b.percent - a.percent),
-                            },
-                            null,
-                        ];
-                    } catch (e) {
-                        console.error(`Failed to load level #${rank + 1} ${path} in ${dir}:`, e);
-                        return [null, path];
+                        level = await levelResult.json();
+                        break;
+                    } catch {
+                        triedDirs.push(dir);
                     }
-                })
-            );
+                }
 
-            combinedList = combinedList.concat(levels);
-        } catch (e) {
-            console.error(`Failed to load list from ${dir}:`, e);
-        }
+                if (!level) {
+                    console.error(`Failed to load level #${rank + 1} ${path} from:`, triedDirs);
+                    return [null, path];
+                }
+
+                return [
+                    {
+                        ...level,
+                        path,
+                        records: level.records.sort((a, b) => b.percent - a.percent),
+                    },
+                    null,
+                ];
+            })
+        );
+
+        combinedList = combinedList.concat(levels);
+    } catch (e) {
+        console.error(`Failed to load list from ${mainDir}:`, e);
     }
 
     return combinedList;
 }
 
 /**
- * Fetch all editors from all directories and merge them
+ * Fetch editors from the main directory
  */
 export async function fetchEditors() {
-    const allEditors = [];
-
-    for (const dir of dirs) {
-        try {
-            const editorsResult = await fetch(`${dir}/_editors.json`);
-            if (!editorsResult.ok) throw new Error(`HTTP ${editorsResult.status}`);
-            const editors = await editorsResult.json();
-            allEditors.push(...editors);
-        } catch {
-            // ignore missing editors file
-        }
+    try {
+        const editorsResult = await fetch(`${mainDir}/_editors.json`);
+        if (!editorsResult.ok) throw new Error(`HTTP ${editorsResult.status}`);
+        const editors = await editorsResult.json();
+        return editors;
+    } catch (e) {
+        console.warn(`Failed to load editors from ${mainDir}:`, e);
+        return null;
     }
-
-    // Remove duplicates by user ID or name (optional)
-    const uniqueEditors = Array.from(
-        new Map(allEditors.map((e) => [e.user?.toLowerCase() || e.name?.toLowerCase(), e])).values()
-    );
-
-    return uniqueEditors;
 }
 
 /**
