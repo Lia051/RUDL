@@ -1,29 +1,3 @@
-:root {
-    --color-background: white;
-    --color-on-background: black;
-    --color-background-hover: #eee;
-    --color-on-background-hover: black;
-    --color-primary: #7e3ff2;
-    --color-primary-gradient: linear-gradient(135deg, #7e3ff2, #9c27b0);
-    --color-on-primary: white;
-    --color-error: #de0000;
-    --color-on-error: white;
-}
-
-main.dark,
-header.dark {
-    color-scheme: dark;
-    --color-background: #1c1b1f;
-    --color-on-background: white;
-    --color-background-hover: #27262c;
-    --color-on-background-hover: white;
-    --color-primary: #9c27b0;
-    --color-primary-gradient: linear-gradient(135deg, #9c27b0, #7b1fa2);
-    --color-on-primary: white;
-    --color-error: #de0000;
-    --color-on-error: white;
-}
-
 html,
 body {
     height: 100%;
@@ -35,9 +9,6 @@ body {
     margin: 0;
     font-family: "Inter", sans-serif;
     line-height: 1.5;
-    background-color: var(--color-background);
-    color: var(--color-on-background);
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header,
@@ -54,13 +25,13 @@ header {
     background: var(--color-primary-gradient);
     color: var(--color-on-primary);
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 header:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
 @media screen and (min-width: 1366px) {
@@ -88,19 +59,18 @@ main {
     grid-template-rows: minmax(0, 1fr);
     column-gap: 2rem;
     padding: 1rem;
-    overflow: hidden;
 }
 
 main > div {
     overflow-y: auto;
-    padding: 1rem;
     border-radius: 0.75rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 main > div:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 .spinner {
@@ -116,10 +86,38 @@ input[type="checkbox"] {
     width: 1.25rem;
     cursor: pointer;
     margin: 0;
-    accent-color: var(--color-primary);
     transition: transform 0.2s ease;
 }
 
 input[type="checkbox"]:hover {
     transform: scale(1.1);
+}
+
+button {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
 }
