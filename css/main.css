@@ -7,9 +7,9 @@
     --color-primary: #d633ff;
     --gradient-primary: linear-gradient(
         135deg,
-        #ff00ff 0%,
-        #d633ff 50%,
-        #8a2be2 100%
+        #ff66ff 0%,   /* bright pink */
+        #a64dff 50%,  /* medium purple */
+        #6a0dad 100%  /* deep purple */
     );
 
     --color-primary-disabled: #c0a0c0;
@@ -30,9 +30,9 @@ header.dark {
     --color-primary: #d633ff;
     --gradient-primary: linear-gradient(
         135deg,
-        #ff00ff 0%,
-        #d633ff 50%,
-        #8a2be2 100%
+        #ff66ff 0%,   /* bright pink */
+        #a64dff 50%,  /* medium purple */
+        #6a0dad 100%  /* deep purple */
     );
 
     --color-primary-disabled: #1f213c;
