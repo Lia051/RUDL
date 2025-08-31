@@ -17,9 +17,9 @@
 
 .dark {
     color-scheme: dark;
-    --color-background: #121212;
-    --color-on-background: #e0e0e0;
-    --color-background-hover: #1e1e1e;
+    --color-background: #0d0d0d;
+    --color-on-background: #f5f5f5;
+    --color-background-hover: #1a1a1a;
     --color-on-background-hover: #ffffff;
 
     --color-primary: #b388ff;
@@ -106,15 +106,22 @@ main {
     column-gap: 2rem;
     padding: 1.5rem;
     transition: var(--transition);
+    background: var(--color-background);
 }
 
 main > div {
     overflow-y: auto;
     border-radius: var(--radius);
-    background: var(--color-background);
+    background: #ffffff;
+    color: var(--color-on-background);
     padding: 1rem;
     box-shadow: 0 4px 14px rgba(0,0,0,0.15);
     transition: var(--transition);
+}
+.dark main > div {
+    background: #1a1a1a;
+    color: #f5f5f5;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
 }
 main > div:hover {
     transform: translateY(-3px);
