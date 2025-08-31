@@ -8,8 +8,15 @@
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
+
+    /* New effects variables */
+    --border-radius: 0.5rem;
+    --transition-speed: 0.3s;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
 }
 
+/* Dark mode overrides */
 main.dark,
 header.dark {
     color-scheme: dark;
@@ -24,69 +31,147 @@ header.dark {
     --color-on-error: white;
 }
 
-html,
-body {
+html, body {
     height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 body {
     display: flex;
     flex-direction: column;
     margin: 0;
-}
-
-header,
-main {
     background-color: var(--color-background);
     color: var(--color-on-background);
-    display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(
-            16em,
-            1fr
-        );
-    column-gap: 2rem;
 }
 
+/* Header styling */
 header {
     display: flex;
     padding-inline: calc(25vw - 10rem);
     height: 4rem;
     background: var(--color-primary-gradient);
     color: var(--color-on-primary);
-}
-@media screen and (min-width: 1366px) {
-    header {
-        display: grid;
-        padding-inline: 0;
-    }
-}
-header .logo {
-    justify-self: end;
-    align-self: center;
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
-}
-header .nav {
-    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px var(--shadow-dark);
+    transition: background var(--transition-speed);
 }
 
+header:hover {
+    background: var(--color-primary-gradient);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    transition: transform var(--transition-speed);
+}
+
+header .logo:hover {
+    transform: scale(1.05);
+}
+
+header .nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+header .nav a {
+    text-decoration: none;
+    color: var(--color-on-primary);
+    font-weight: 500;
+    position: relative;
+    transition: color var(--transition-speed);
+}
+
+header .nav a::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: var(--color-on-primary);
+    transition: width var(--transition-speed);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+}
+
+header .nav a:hover::after {
+    width: 100%;
+}
+
+/* Main content styling */
 main {
-    height: 0;
     flex: 1;
     display: grid;
     grid-template-rows: minmax(0, 1fr);
     column-gap: 2rem;
-}
-main > div {
-    overflow-y: auto;
+    padding: 1.5rem;
 }
 
-.spinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-column: span 3;
+main > div {
+    overflow-y: auto;
+    background: var(--color-background-hover);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px var(--shadow-light);
+    transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+}
+
+main > div:hover {
+    box-shadow: 0 6px 20px var(--shadow-dark);
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+button {
+    background: var(--color-primary-gradient);
+    color: var(--color-on-primary);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 6px var(--shadow-light);
+}
+
+button:hover {
+    box-shadow: 0 6px 12px var(--shadow-dark);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--shadow-dark);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="checkbox"] {
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    transition: all var(--transition-speed);
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(126, 63, 242, 0.2);
+    outline: none;
 }
 
 input[type="checkbox"] {
@@ -94,4 +179,37 @@ input[type="checkbox"] {
     width: 1.25rem;
     cursor: pointer;
     margin: 0;
+    accent-color: var(--color-primary);
 }
+
+/* Spinner */
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 3;
+}
+
+/* Smooth text animation */
+h1, h2, h3, h4, h5, h6, p, a, button {
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+a:hover, button:hover {
+    color: var(--color-on-primary);
+    transform: scale(1.03);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        height: auto;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
