@@ -1,10 +1,10 @@
 import { round, score } from './score.js';
 
 /**
- * Folders to load levels and editors from
- * You can edit this array to include any directories you want
+ * Folders to load levels and editors from.
+ * Must be relative to your public folder (browser-accessible paths)
  */
-const dirs = ['/data/easydemons', '/data/mediumdemons'];
+const dirs = ['./data/easydemons', './data/mediumdemons'];
 
 /**
  * Fetch all levels from the listed directories
@@ -15,33 +15,33 @@ export async function fetchList() {
     for (const dir of dirs) {
         try {
             const listResult = await fetch(`${dir}/_list.json`);
+            if (!listResult.ok) throw new Error(`HTTP ${listResult.status}`);
             const list = await listResult.json();
 
             const levels = await Promise.all(
                 list.map(async (path, rank) => {
                     try {
                         const levelResult = await fetch(`${dir}/${path}.json`);
+                        if (!levelResult.ok) throw new Error(`HTTP ${levelResult.status}`);
                         const level = await levelResult.json();
                         return [
                             {
                                 ...level,
                                 path,
-                                records: level.records.sort(
-                                    (a, b) => b.percent - a.percent
-                                ),
+                                records: level.records.sort((a, b) => b.percent - a.percent),
                             },
                             null,
                         ];
-                    } catch {
-                        console.error(`Failed to load level #${rank + 1} ${path} in ${dir}.`);
+                    } catch (e) {
+                        console.error(`Failed to load level #${rank + 1} ${path} in ${dir}:`, e);
                         return [null, path];
                     }
                 })
             );
 
             combinedList = combinedList.concat(levels);
-        } catch {
-            console.error(`Failed to load list from ${dir}.`);
+        } catch (e) {
+            console.error(`Failed to load list from ${dir}:`, e);
         }
     }
 
@@ -49,20 +49,28 @@ export async function fetchList() {
 }
 
 /**
- * Fetch all editors from the first folder that has an _editors.json
- * (you can modify this logic if you want to combine editors from all folders)
+ * Fetch all editors from all directories and merge them
  */
 export async function fetchEditors() {
+    const allEditors = [];
+
     for (const dir of dirs) {
         try {
-            const editorsResults = await fetch(`${dir}/_editors.json`);
-            const editors = await editorsResults.json();
-            return editors;
+            const editorsResult = await fetch(`${dir}/_editors.json`);
+            if (!editorsResult.ok) throw new Error(`HTTP ${editorsResult.status}`);
+            const editors = await editorsResult.json();
+            allEditors.push(...editors);
         } catch {
-            console.warn(`No _editors.json found in ${dir}`);
+            // ignore missing editors file
         }
     }
-    return null;
+
+    // Remove duplicates by user ID or name (optional)
+    const uniqueEditors = Array.from(
+        new Map(allEditors.map((e) => [e.user?.toLowerCase() || e.name?.toLowerCase(), e])).values()
+    );
+
+    return uniqueEditors;
 }
 
 /**
@@ -70,7 +78,6 @@ export async function fetchEditors() {
  */
 export async function fetchLeaderboard() {
     const list = await fetchList();
-
     const scoreMap = {};
     const errs = [];
 
@@ -122,7 +129,6 @@ export async function fetchLeaderboard() {
         });
     });
 
-    // Wrap in extra Object containing the user and total score
     const res = Object.entries(scoreMap).map(([user, scores]) => {
         const { verified, completed, progressed } = scores;
         const total = [verified, completed, progressed]
@@ -136,6 +142,5 @@ export async function fetchLeaderboard() {
         };
     });
 
-    // Sort by total score
     return [res.sort((a, b) => b.total - a.total), errs];
 }
