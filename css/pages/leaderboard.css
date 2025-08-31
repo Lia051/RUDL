@@ -1,4 +1,4 @@
-/* ===== Full page background ===== */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -12,7 +12,7 @@ body {
     background: linear-gradient(135deg, var(--color-background-hover), var(--color-background-hover) 100%);
 }
 
-/* ===== Main leaderboard container ===== */
+
 .page-leaderboard-container {
     display: block;
     padding: 2rem;
@@ -24,7 +24,7 @@ body {
     margin: 2rem auto;
 }
 
-/* ===== Leaderboard grid ===== */
+
 .page-leaderboard {
     display: grid;
     grid-template-columns: minmax(24rem, 2fr) 3fr;
@@ -36,7 +36,7 @@ body {
     border-radius: 1rem;
 }
 
-/* ===== Scrollable inner containers ===== */
+
 .page-leaderboard .board-container,
 .page-leaderboard .player-container {
     padding: 2rem;
@@ -44,10 +44,10 @@ body {
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow-y: auto;
-    max-height: 65vh; /* ensures scrolling */
+    max-height: 65vh; 
 }
 
-/* ===== Error box ===== */
+
 .page-leaderboard .error-container {
     grid-row: 1;
     grid-column: 1 / span 2;
@@ -60,7 +60,7 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
-/* ===== Board table ===== */
+
 .page-leaderboard .board {
     display: block;
     table-layout: auto;
@@ -97,7 +97,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ===== Player info ===== */
+
 .page-leaderboard .player {
     display: flex;
     flex-direction: column;
@@ -116,7 +116,7 @@ body {
     color: var(--color-primary);
 }
 
-/* ===== Scrollbar styling ===== */
+
 .page-leaderboard .board-container::-webkit-scrollbar,
 .page-leaderboard .player-container::-webkit-scrollbar {
     width: 8px;
@@ -131,7 +131,7 @@ body {
     background: transparent;
 }
 
-/* ===== Hover effects ===== */
+
 .page-leaderboard .board tr:hover {
     background-color: rgba(0,0,0,0.03);
 }
@@ -139,7 +139,7 @@ body {
     cursor: pointer;
 }
 
-/* ===== Mobile Responsive ===== */
+
 @media (max-width: 768px) {
     .page-leaderboard {
         grid-template-columns: 1fr;
