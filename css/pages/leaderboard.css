@@ -1,93 +1,179 @@
+/* ===== Full page background ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background-hover);
+    font-family: 'Inter', sans-serif;
+    color: var(--color-on-background);
+    overflow-x: hidden;
+}
+body {
+    background: linear-gradient(135deg, var(--color-background-hover), var(--color-background-hover) 100%);
+}
+
+/* ===== Main leaderboard container ===== */
 .page-leaderboard-container {
     display: block;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--color-background-hover);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.05), 0 6px 18px rgba(0,0,0,0.15);
+    overflow: hidden;
+    max-width: 95%;
+    margin: 2rem auto;
 }
+
+/* ===== Leaderboard grid ===== */
 .page-leaderboard {
-    height: 100%;
     display: grid;
     grid-template-columns: minmax(24rem, 2fr) 3fr;
     grid-template-rows: max-content 1fr;
     column-gap: 2rem;
+    gap: 2rem;
     max-width: 80rem;
     margin: 0 auto;
+    border-radius: 1rem;
 }
-.page-leaderboard > div {
+
+/* ===== Scrollable inner containers ===== */
+.page-leaderboard .board-container,
+.page-leaderboard .player-container {
+    padding: 2rem;
+    background-color: var(--color-background);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow-y: auto;
+    max-height: 65vh; /* ensures scrolling */
 }
+
+/* ===== Error box ===== */
 .page-leaderboard .error-container {
     grid-row: 1;
     grid-column: 1 / span 2;
 }
 .page-leaderboard .error-container .error {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     background-color: var(--color-error);
     color: var(--color-on-error);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
-.page-leaderboard .board-container,
-.page-leaderboard .player-container {
-    grid-row: 2;
-    padding-block: 2rem;
-}
-.page-leaderboard .board-container {
-    padding-inline: 1rem;
-}
+
+/* ===== Board table ===== */
 .page-leaderboard .board {
-    table-layout: auto;
     display: block;
+    table-layout: auto;
     width: 100%;
 }
-.page-leaderboard .board .rank {
-    padding-block: 1rem;
-    text-align: end;
+.page-leaderboard .board tr {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
+.page-leaderboard .board .rank,
 .page-leaderboard .board .total {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     text-align: end;
-}
-.page-leaderboard .board .user {
-    width: 100%;
 }
 .page-leaderboard .board .user button {
+    width: 100%;
+    padding: 1rem 1.5rem;
     background-color: var(--color-background);
     color: var(--color-on-background);
     border: none;
-    border-radius: 0.5rem;
-    padding: 1rem;
+    border-radius: 0.75rem;
     text-align: start;
-    word-break: normal;
     overflow-wrap: anywhere;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 .page-leaderboard .board .user button:hover {
-    background-color: var(--color-background-hover);
+    background: linear-gradient(90deg, var(--color-background-hover), var(--color-background));
     color: var(--color-on-background-hover);
-    cursor: pointer;
 }
 .page-leaderboard .board .user.active button {
-    background-color: var(--color-primary);
+    background: var(--gradient-primary);
     color: var(--color-on-primary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
+/* ===== Player info ===== */
 .page-leaderboard .player {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-right: 2rem;
-}
-.page-leaderboard .player .table {
-    table-layout: fixed;
+    padding: 0;
 }
 .page-leaderboard .player .table tr td:not(:last-child) {
     padding-right: 2rem;
 }
 .page-leaderboard .player .table p,
 .page-leaderboard .player .table a {
-    padding-block: 1rem;
-}
-.page-leaderboard .player .table .rank p,
-.page-leaderboard .player .table .score p {
-    text-align: end;
-}
-.page-leaderboard .player .table .level {
-    width: 100%;
+    padding: 1rem 1.5rem;
 }
 .page-leaderboard .player .table a:hover {
     text-decoration: underline;
+    color: var(--color-primary);
+}
+
+/* ===== Scrollbar styling ===== */
+.page-leaderboard .board-container::-webkit-scrollbar,
+.page-leaderboard .player-container::-webkit-scrollbar {
+    width: 8px;
+}
+.page-leaderboard .board-container::-webkit-scrollbar-thumb,
+.page-leaderboard .player-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+.page-leaderboard .board-container::-webkit-scrollbar-track,
+.page-leaderboard .player-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ===== Hover effects ===== */
+.page-leaderboard .board tr:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+.page-leaderboard .board .user button {
+    cursor: pointer;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .page-leaderboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content auto auto;
+        row-gap: 1.5rem;
+        column-gap: 0;
+    }
+    .page-leaderboard .error-container {
+        grid-column: 1;
+        margin-bottom: 1rem;
+    }
+    .page-leaderboard .board-container,
+    .page-leaderboard .player-container {
+        padding: 1rem;
+        max-height: none;
+    }
+    .page-leaderboard .board .rank,
+    .page-leaderboard .board .total,
+    .page-leaderboard .board .user button {
+        padding: 0.75rem 1rem;
+    }
+    .page-leaderboard .player .table p,
+    .page-leaderboard .player .table a {
+        padding: 0.75rem 1rem;
+    }
+    .page-leaderboard .player {
+        gap: 1rem;
+        padding-right: 0;
+    }
+    .page-leaderboard .board .user button {
+        font-size: 0.95rem;
+    }
+    .page-leaderboard-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
 }
