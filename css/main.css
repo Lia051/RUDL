@@ -15,16 +15,17 @@
     --transition: all 0.25s ease;
 }
 
-main.dark,
-header.dark {
+.dark {
     color-scheme: dark;
     --color-background: #121212;
-    --color-on-background: #eaeaea;
+    --color-on-background: #e0e0e0;
     --color-background-hover: #1e1e1e;
     --color-on-background-hover: #ffffff;
-    --color-primary: #9c27b0;
-    --color-primary-gradient: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 50%, #6a1b9a 100%);
+
+    --color-primary: #b388ff;
+    --color-primary-gradient: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 50%, #4a148c 100%);
     --color-on-primary: #ffffff;
+
     --color-error: #ef5350;
     --color-on-error: #ffffff;
 }
@@ -41,6 +42,7 @@ body {
     font-family: "Inter", system-ui, sans-serif;
     background: var(--color-background);
     color: var(--color-on-background);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 header {
@@ -52,6 +54,7 @@ header {
     background: var(--color-primary-gradient);
     color: var(--color-on-primary);
     box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    transition: var(--transition);
 }
 @media screen and (min-width: 1366px) {
     header {
@@ -102,19 +105,20 @@ main {
     grid-template-rows: minmax(0, 1fr);
     column-gap: 2rem;
     padding: 1.5rem;
+    transition: var(--transition);
 }
 
 main > div {
     overflow-y: auto;
     border-radius: var(--radius);
-    background: white;
+    background: var(--color-background);
     padding: 1rem;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
     transition: var(--transition);
 }
 main > div:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     background: var(--color-background-hover);
 }
 
