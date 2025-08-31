@@ -33,17 +33,17 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header,
 main {
-    background-color: var(--color-background);
-    color: var(--color-on-background);
     display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(
-            16em,
-            1fr
-        );
+    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16em, 1fr);
     column-gap: 2rem;
 }
 
@@ -53,13 +53,23 @@ header {
     height: 4rem;
     background: var(--color-primary-gradient);
     color: var(--color-on-primary);
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
+
+header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
 @media screen and (min-width: 1366px) {
     header {
         display: grid;
         padding-inline: 0;
     }
 }
+
 header .logo {
     justify-self: end;
     align-self: center;
@@ -67,19 +77,30 @@ header .logo {
     align-items: flex-end;
     gap: 1rem;
 }
+
 header .nav {
     flex: 1;
 }
 
 main {
-    height: 0;
     flex: 1;
     display: grid;
     grid-template-rows: minmax(0, 1fr);
     column-gap: 2rem;
+    padding: 1rem;
+    overflow: hidden;
 }
+
 main > div {
     overflow-y: auto;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+main > div:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .spinner {
@@ -87,6 +108,7 @@ main > div {
     align-items: center;
     justify-content: center;
     grid-column: span 3;
+    padding: 1rem;
 }
 
 input[type="checkbox"] {
@@ -94,4 +116,10 @@ input[type="checkbox"] {
     width: 1.25rem;
     cursor: pointer;
     margin: 0;
+    accent-color: var(--color-primary);
+    transition: transform 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+    transform: scale(1.1);
 }
