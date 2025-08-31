@@ -1,19 +1,22 @@
 :root {
-    --color-background: white;
-    --color-on-background: black;
-    --color-background-hover: #eee;
-    --color-on-background-hover: black;
-    --color-primary: #7e3ff2;
-    --color-primary-gradient: linear-gradient(135deg, #7e3ff2, #9c27b0);
+    --color-background: #1c1b1f;
+    --color-on-background: white;
+    --color-background-hover: #27262c;
+    --color-on-background-hover: white;
+
+    --color-primary: #AB7835;
+    --gradient-primary: linear-gradient(
+        135deg,
+        #3d260f 0%,
+        #8c6227 35%,
+        #c49146 65%,
+        #eac87b 100%
+    );
+
+    --color-primary-disabled: #1f213c;
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
-
-    /* New for modern touches */
-    --border-radius: 0.75rem;
-    --transition-speed: 0.3s;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow-dark: rgba(0, 0, 0, 0.15);
 }
 
 main.dark,
@@ -23,108 +26,124 @@ header.dark {
     --color-on-background: white;
     --color-background-hover: #27262c;
     --color-on-background-hover: white;
-    --color-primary: #9c27b0;
-    --color-primary-gradient: linear-gradient(135deg, #9c27b0, #7b1fa2);
+
+    --color-primary: #AB7835;
+    --gradient-primary: linear-gradient(
+        135deg,
+        #3d260f 0%,
+        #8c6227 35%,
+        #c49146 65%,
+        #eac87b 100%
+    );
+
+    --color-primary-disabled: #1f213c;
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
 }
 
-html, body {
+html,
+body {
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    scroll-behavior: smooth;
 }
 
 body {
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: var(--color-background);
-    color: var(--color-on-background);
 }
 
-/* Header */
-header {
+header,
+main {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
     display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16em, 1fr);
-    column-gap: 2rem;
-    padding-inline: calc(25vw - 10rem);
-    height: 4rem;
-    background: var(--color-primary-gradient);
-    color: var(--color-on-primary);
-    align-items: center;
+    grid-template-columns: minmax(2rem, 1fr) minmax(2rem, 2fr) minmax(
+            2em,
+            1fr
+        );
+    column-gap: 6rem;
 }
+
+/* HEADER with metallic shimmer + shadow */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 2rem;
+    height: 4.5rem;
+
+    background: var(--gradient-primary);
+    background-size: 200% 200%;
+    animation: metallic-shimmer 10s linear infinite;
+
+    color: var(--color-on-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* metallic shimmer animation */
+@keyframes metallic-shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 @media screen and (min-width: 1366px) {
     header {
-        padding-inline: 0;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding-inline: 2rem;
     }
 }
 
 header .logo {
-    justify-self: end;
+    justify-self: start;
     align-self: center;
     display: flex;
     align-items: flex-end;
     gap: 1rem;
-    font-weight: bold;
-    transition: transform var(--transition-speed);
-}
-header .logo:hover {
-    transform: scale(1.05);
 }
 
 header .nav {
     flex: 1;
     display: flex;
     justify-content: center;
-    gap: 2rem;
-}
-header .nav a {
-    text-decoration: none;
-    color: var(--color-on-primary);
-    font-weight: 500;
-    position: relative;
-    transition: color var(--transition-speed);
-}
-header .nav a::after {
-    content: '';
-    display: block;
-    width: 0%;
-    height: 2px;
-    background: var(--color-on-primary);
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    transition: width var(--transition-speed);
-}
-header .nav a:hover::after {
-    width: 100%;
+    gap: 3rem;
 }
 
-/* Main */
+/* Discord icon fix */
+header .discord {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+header .discord:hover {
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 12px #fff3;
+    transform: scale(1.1);
+}
+header .discord img,
+header .discord svg {
+    width: 24px;
+    height: 24px;
+}
+
 main {
-    display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16em, 1fr);
-    column-gap: 2rem;
-    flex: 1;
     height: 0;
-    padding: 1rem;
+    flex: 1;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    column-gap: 0.5rem;
 }
-
 main > div {
     overflow-y: auto;
-    border-radius: var(--border-radius);
-    transition: box-shadow var(--transition-speed), transform var(--transition-speed);
 }
 
-main > div:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--shadow-dark);
-}
-
-/* Spinner */
 .spinner {
     display: flex;
     align-items: center;
@@ -132,51 +151,9 @@ main > div:hover {
     grid-column: span 3;
 }
 
-/* Inputs */
 input[type="checkbox"] {
     height: 1.25rem;
     width: 1.25rem;
     cursor: pointer;
     margin: 0;
-}
-
-/* Buttons */
-button {
-    background: var(--color-primary-gradient);
-    color: var(--color-on-primary);
-    border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-speed);
-}
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px var(--shadow-dark);
-}
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px var(--shadow-dark);
-}
-
-/* Smooth text and link effects */
-h1, h2, h3, h4, h5, h6, p, a, button {
-    transition: color var(--transition-speed), transform var(--transition-speed);
-}
-a:hover, button:hover {
-    transform: scale(1.03);
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    header {
-        display: grid;
-        padding: 1rem;
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-    main {
-        grid-template-columns: 1fr;
-    }
 }
