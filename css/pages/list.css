@@ -1,63 +1,161 @@
-/* Card-style Levels */
-.page-list .level-container .level {
-    background-color: var(--color-background);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.page-list .list-container,
+.page-list .level-container,
+.page-list .meta-container {
+    padding-block: 2rem;
 }
 
-.page-list .level-container .level:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+.page-list .list-container {
+    padding-inline: 1rem;
 }
 
-/* Button Enhancements */
+.page-list .meta-container {
+    padding-right: 2rem;
+}
+
+.page-list .list {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.page-list .list .rank {
+    text-align: end;
+    padding-right: 1rem;
+    font-weight: 600;
+}
+
+.page-list .list .level {
+    width: 100%;
+}
+
 .page-list .list .level button {
     background-color: var(--color-background);
     color: var(--color-on-background);
-    border: 2px solid var(--color-background);
-    border-radius: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
     padding: 1rem;
     text-align: start;
+    word-break: normal;
+    overflow-wrap: anywhere;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.page-list .list .level.error button {
+    color: var(--color-error);
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.7;
 }
 
 .page-list .list .level button:hover {
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
-    border-color: var(--color-primary);
-    transform: translateY(-3px);
+    background-color: var(--color-background-hover);
+    color: var(--color-on-background-hover);
 }
 
 .page-list .list .level.active button {
     background-color: var(--color-primary);
     color: var(--color-on-primary);
-    border-color: var(--color-primary);
 }
 
-/* Meta Section Styling */
-.page-list .meta-container {
-    background-color: var(--color-background-hover);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
+.page-list .level-container .level {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-right: 2rem;
+    max-width: 48rem;
+}
+
+.page-list .level-container .level .level-authors {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
+}
+
+.page-list .level-container .level .video {
+    aspect-ratio: 16/9;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.page-list .level-container .level .stats {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    gap: 2rem;
+}
+
+.page-list .level-container .level .stats li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.page-list .level-container .level .records {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.page-list .level-container .level .records tr td:not(:last-child) {
+    padding-right: 1rem;
+}
+
+.page-list .level-container .level .records .percent,
+.page-list .level-container .level .records .user,
+.page-list .level-container .level .records .hz {
+    padding-block: 1rem;
+}
+
+.page-list .level-container .level .records .user {
+    width: 100%;
+}
+
+.page-list .level-container .level .records .percent,
+.page-list .level-container .level .records .hz {
+    text-align: end;
+}
+
+.page-list .meta-container .og a:hover,
+.page-list .level-container .level .records a:hover,
+.page-list .meta .editors li a:hover {
+    text-decoration: underline;
+}
+
+.page-list .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.page-list .meta .errors {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.page-list .meta .errors .error {
+    padding: 1rem;
+    background-color: var(--color-error);
+    color: var(--color-on-error);
+    border-radius: 0.5rem;
+}
+
+.page-list .meta .editors {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .page-list .meta .editors li {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.page-list .meta .editors li:hover {
-    transform: translateX(5px);
+    gap: 0.5rem;
 }
 
 .page-list .meta .editors li img {
-    width: 2rem;
-    height: 2rem;
+    height: 1.25rem;
     border-radius: 50%;
 }
