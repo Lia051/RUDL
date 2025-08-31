@@ -1,13 +1,11 @@
-/* =========================
-   Modern Purple Theme
-   ========================= */
+
 :root {
     --color-background: #f9f6ff;
     --color-on-background: #1a1a1a;
     --color-background-hover: #ede7f6;
     --color-on-background-hover: #1a1a1a;
 
-    --color-primary: #7e57c2; /* Modern purple */
+    --color-primary: #7e57c2; 
     --color-primary-gradient: linear-gradient(135deg, #7e57c2, #9c27b0);
     --color-on-primary: #ffffff;
 
@@ -34,9 +32,7 @@ header.dark {
     --color-on-error: #ffffff;
 }
 
-/* =========================
-   Layout & Base
-   ========================= */
+
 html,
 body {
     height: 100%;
@@ -51,9 +47,7 @@ body {
     flex-direction: column;
 }
 
-/* =========================
-   Header
-   ========================= */
+
 header {
     display: flex;
     align-items: center;
@@ -104,9 +98,7 @@ header .nav a:hover {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* =========================
-   Main
-   ========================= */
+
 main {
     height: 0;
     flex: 1;
@@ -129,9 +121,7 @@ main > div:hover {
     background: var(--color-background-hover);
 }
 
-/* =========================
-   Utilities
-   ========================= */
+
 .spinner {
     display: flex;
     align-items: center;
