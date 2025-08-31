@@ -7,9 +7,9 @@
     --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #cc33cc 0%,   /* darker pink */
-        #8a2be2 50%,  /* richer purple */
-        #4b0082 100%  /* deep indigo */
+        #cc33cc 0%,   
+        #8a2be2 50%,  
+        #4b0082 100%  
     );
 
     --color-primary-disabled: #c0a0c0;
@@ -18,7 +18,7 @@
     --color-on-error: white;
 }
 
-/* Dark mode overrides */
+
 main.dark,
 header.dark {
     color-scheme: dark;
@@ -30,9 +30,9 @@ header.dark {
     --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #cc33cc 0%,   /* darker pink */
-        #8a2be2 50%,  /* richer purple */
-        #4b0082 100%  /* deep indigo */
+        #cc33cc 0%,  
+        #8a2be2 50%,  
+        #4b0082 100%  
     );
 
     --color-primary-disabled: #1f213c;
@@ -64,7 +64,7 @@ main {
     column-gap: 6rem;
 }
 
-/* HEADER with metallic shimmer + shadow */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -80,7 +80,6 @@ header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* metallic shimmer animation */
 @keyframes metallic-shimmer {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
@@ -111,7 +110,6 @@ header .nav {
     gap: 3rem;
 }
 
-/* Discord icon fix */
 header .discord {
     display: flex;
     align-items: center;
