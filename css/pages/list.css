@@ -1,11 +1,10 @@
-
-
 .page-list .list-container,
 .page-list .level-container,
 .page-list .meta-container {
     padding-block: 2rem;
 }
 
+/* Padding adjustments */
 .page-list .list-container {
     padding-inline: 1rem;
 }
@@ -14,7 +13,7 @@
     padding-right: 2rem;
 }
 
-
+/* List table */
 .page-list .list {
     table-layout: auto;
     width: 100%;
@@ -25,23 +24,27 @@
     text-align: end;
     padding-right: 1rem;
     font-weight: 600;
+    color: var(--color-on-background);
+    transition: color 0.2s ease;
 }
 
 .page-list .list .level {
     width: 100%;
 }
 
+/* Level buttons */
 .page-list .list .level button {
     background-color: var(--color-background);
     color: var(--color-on-background);
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     padding: 1rem;
     text-align: start;
     word-break: normal;
     overflow-wrap: anywhere;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .page-list .list .level.error button {
@@ -54,20 +57,33 @@
 .page-list .list .level button:hover {
     background-color: var(--color-background-hover);
     color: var(--color-on-background-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .page-list .list .level.active button {
     background-color: var(--color-primary);
     color: var(--color-on-primary);
+    box-shadow: 0 4px 12px rgba(126, 63, 242, 0.2);
 }
 
-
+/* Level container */
 .page-list .level-container .level {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding-right: 2rem;
     max-width: 48rem;
+    background-color: var(--color-background-hover);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-list .level-container .level:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .page-list .level-container .level .level-authors {
@@ -80,6 +96,7 @@
     aspect-ratio: 16/9;
     border-radius: 0.5rem;
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 .page-list .level-container .level .stats {
@@ -96,7 +113,6 @@
     gap: 0.5rem;
     font-weight: 500;
 }
-
 
 .page-list .level-container .level .records {
     table-layout: fixed;
@@ -123,14 +139,15 @@
     text-align: end;
 }
 
-
+/* Hover links */
 .page-list .meta-container .og a:hover,
 .page-list .level-container .level .records a:hover,
 .page-list .meta .editors li a:hover {
     text-decoration: underline;
+    color: var(--color-primary);
 }
 
-
+/* Meta styling */
 .page-list .meta {
     display: flex;
     flex-direction: column;
@@ -148,6 +165,7 @@
     background-color: var(--color-error);
     color: var(--color-on-error);
     border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .page-list .meta .editors {
@@ -160,6 +178,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.page-list .meta .editors li:hover {
+    transform: translateX(3px);
 }
 
 .page-list .meta .editors li img {
