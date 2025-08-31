@@ -1,15 +1,15 @@
 :root {
-    --color-background: #BCB6C2;
+    --color-background: #ffffff;
     --color-on-background: #1c1b1f;
-    --color-background-hover: white;
+    --color-background-hover: #f0f0f0;
     --color-on-background-hover: #1c1b1f;
 
     --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #cc33cc 0%,   
-        #8a2be2 50%,  
-        #4b0082 100%  
+        #cc33cc 0%,   /* darker pink */
+        #8a2be2 50%,  /* richer purple */
+        #4b0082 100%  /* deep indigo */
     );
 
     --color-primary-disabled: #c0a0c0;
@@ -18,21 +18,21 @@
     --color-on-error: white;
 }
 
-
+/* Dark mode overrides */
 main.dark,
 header.dark {
     color-scheme: dark;
-    --color-background: #BCB6C2;
+    --color-background: #1c1b1f;
     --color-on-background: white;
-    --color-background-hover: black;
+    --color-background-hover: #27262c;
     --color-on-background-hover: white;
 
     --color-primary: #b020d6;
     --gradient-primary: linear-gradient(
         135deg,
-        #cc33cc 0%,  
-        #8a2be2 50%,  
-        #4b0082 100%  
+        #cc33cc 0%,   /* darker pink */
+        #8a2be2 50%,  /* richer purple */
+        #4b0082 100%  /* deep indigo */
     );
 
     --color-primary-disabled: #1f213c;
@@ -64,7 +64,7 @@ main {
     column-gap: 6rem;
 }
 
-
+/* HEADER with metallic shimmer + shadow */
 header {
     display: flex;
     justify-content: space-between;
@@ -80,6 +80,7 @@ header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* metallic shimmer animation */
 @keyframes metallic-shimmer {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
@@ -110,6 +111,7 @@ header .nav {
     gap: 3rem;
 }
 
+/* Discord icon fix */
 header .discord {
     display: flex;
     align-items: center;
