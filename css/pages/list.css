@@ -154,6 +154,20 @@
     font-weight: 500;
 }
 
+.page-list .level-container .level .records .user a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: visible;
+}
+
+.page-list .level-container .level .records .user a .difficulty {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .page-list .meta-container .og a:hover,
 .page-list .level-container .level .records a:hover {
     text-decoration: underline;
@@ -200,20 +214,6 @@
 
 .page-list .meta .editors li a:hover {
     text-decoration: underline;
-}
-
-/* New difficulty avatar styles */
-.page-list .level-container .level .records .user a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Space between avatar and username */
-}
-
-.page-list .level-container .level .records .user a .difficulty {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 @media (max-width: 768px) {
