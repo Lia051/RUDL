@@ -6,6 +6,9 @@ import { fetchEditors, fetchList } from "../content.js";
 import Spinner from "../components/Spinner.js";
 import LevelAuthors from "../components/List/LevelAuthors.js";
 
+// Import the avatar image
+import easyDemonImg from '../assets/easydemon.png';
+
 const roleIconMap = {
     owner: "crown",
     admin: "user-gear",
@@ -71,7 +74,7 @@ export default {
                             <td class="user">
                                 <a :href="record.link" target="_blank" class="type-label-lg">
                                     <!-- Avatar image with class "difficulty" -->
-                                    <img src="/assets/easydemon.png" alt="difficulty" class="difficulty" />
+                                    <img :src="easyDemonImg" alt="difficulty" class="difficulty" />
                                     {{ record.user }}
                                 </a>
                             </td>
@@ -130,7 +133,8 @@ export default {
         selected: 0,
         errors: [],
         roleIconMap,
-        store
+        store,
+        easyDemonImg, // <- imported image
     }),
     computed: {
         level() {
