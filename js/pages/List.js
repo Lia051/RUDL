@@ -71,7 +71,7 @@ export default {
                             </td>
                             <td class="user">
                                 <div class="record-user">
-                                    <img src="/assets/easydemon.png" alt="difficulty" class="difficulty" />
+                                    <img src="assets/easydemon.png" alt="difficulty" class="difficulty" />
                                     <a :href="record.link" target="_blank">{{ record.user }}</a>
                                 </div>
                             </td>
