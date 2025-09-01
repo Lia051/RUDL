@@ -20,6 +20,7 @@ export default {
         <main v-if="loading">
             <Spinner></Spinner>
         </main>
+
         <main v-else class="page-list">
             <div class="list-container">
                 <table class="list" v-if="list">
@@ -28,7 +29,7 @@ export default {
                             <p v-if="i + 1 <= 150" class="type-label-lg">#{{ i + 1 }}</p>
                             <p v-else class="type-label-lg">Legacy</p>
                         </td>
-                        <td class="level" :class="{ 'active': selected === i, 'error': !level }">
+                        <td class="level" :class="{ 'active': selected == i, 'error': !level }">
                             <button @click="selected = i">
                                 <span class="type-label-lg">{{ level?.name || \`Error (\${err}.json)\` }}</span>
                             </button>
@@ -60,7 +61,7 @@ export default {
 
                     <h2>Records</h2>
                     <p v-if="selected + 1 <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <p v-else-if="selected + 1 <= 150"><strong>100%</strong> or better to qualify</p>
+                    <p v-else-if="selected +1 <= 150"><strong>100%</strong> or better to qualify</p>
                     <p v-else>This level does not accept new records.</p>
 
                     <table class="records">
@@ -69,11 +70,10 @@ export default {
                                 <p>{{ record.percent }}%</p>
                             </td>
                             <td class="user">
-                                <a :href="record.link" target="_blank" class="type-label-lg">
-                                    <!-- Difficulty image -->
+                                <div class="record-user">
                                     <img src="/assets/easydemon.png" alt="difficulty" class="difficulty" />
-                                    {{ record.user }}
-                                </a>
+                                    <a :href="record.link" target="_blank">{{ record.user }}</a>
+                                </div>
                             </td>
                             <td class="mobile">
                                 <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
@@ -134,12 +134,10 @@ export default {
     }),
     computed: {
         level() {
-            return this.list[this.selected]?.[0];
+            return this.list[this.selected][0];
         },
         video() {
-            if (!this.level?.showcase) {
-                return embed(this.level.verification);
-            }
+            if (!this.level.showcase) return embed(this.level.verification);
             return embed(this.toggledShowcase ? this.level.showcase : this.level.verification);
         },
     },
@@ -151,13 +149,9 @@ export default {
             this.errors = ["Failed to load list. Retry in a few minutes or notify list staff."];
         } else {
             this.errors.push(
-                ...this.list
-                    .filter(([_, err]) => err)
-                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
+                ...this.list.filter(([_, err]) => err).map(([_, err]) => `Failed to load level. (${err}.json)`)
             );
-            if (!this.editors) {
-                this.errors.push("Failed to load list editors.");
-            }
+            if (!this.editors) this.errors.push("Failed to load list editors.");
         }
 
         this.loading = false;
