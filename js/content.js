@@ -8,7 +8,7 @@ const mainDir = '/data';
 /**
  * Additional folders to try when fetching levels
  */
-const levelDirs = ['/data/easydemons', '/data/mediumdemons'];
+const levelDirs = ['/data/1-easydemons', '/data/2-mediumdemons', '/data/3-harddemons', '/data/4-insanedemons', '/data/5-extremedemons', '/data/6-unrated'];
 
 /**
  * Fetch all levels from the main directory, trying multiple folders for each level
